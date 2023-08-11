@@ -10,7 +10,7 @@
           ></v-img>
           <template v-slot:title> Started </template>
 
-          <v-card-text> <p>{{users.exam_started}} </p></v-card-text>
+          <v-card-text> <p>{{started}} </p></v-card-text>
         </v-card>
       </v-col>
       <v-col cols="6">
@@ -22,7 +22,7 @@
           ></v-img>
           <template v-slot:title> Finished </template>
 
-          <v-card-text> {{users.exam_finish}} </v-card-text>
+          <v-card-text> {{finish}} </v-card-text>
         </v-card>
       </v-col>
     </v-row>
@@ -42,7 +42,7 @@
 
     <v-data-table
       :headers="headers"
-      :items="users.users"
+      :items="users"
       item-key="ID"
       :search="search"
       @click:row="handleRowClick"
@@ -107,6 +107,7 @@ export default {
           key: "Lastname",
           sortable: false,
           title: "Lastname",
+          value: "Lastname", 
         },
         { key: "Firstname", title: "Firstname", sortable: false },
         { key: "Middlename", title: "Middlename", sortable: false },
@@ -127,10 +128,13 @@ export default {
   // },
 
   computed: {
-    ...mapGetters("users", { users: "getUsers" }),
+    ...mapGetters("users", { users: "getUsers",started: "getStarted", finish: "getFinish" }),
+
+
   },
   created() {
     this.fetchUsers();
+    console.log("started=",this.started)
     //    setTimeout(()=>{
     //     console.log("users=",this.users);
     //    },2000);
@@ -149,6 +153,8 @@ export default {
     handleRowClick(item, row) {
       console.log("users=", item);
       console.log("users=", row.item.raw.ID);
+      console.log("users=", row.item.raw.Lastname);
+      localStorage.setItem('ID',row.item.raw.ID);
       this.$router.push({ name: "StudentDetails",  params: { id: row.item.raw.ID } })
       //   this.$router.push({
       //   name: "StudentDetails",
@@ -160,6 +166,7 @@ export default {
   },
   check() {
     console.log("this.users=", this.users);
+
   },
 };
 </script>
