@@ -4,15 +4,15 @@ axios.defaults.baseURL = process.env.VUE_APP_API_URL;
 
 const state = () => ({
     users: [],
-    auth: {},
+    students: {},
 })
 
 const getters = {
     getUsers(state) {
         return state.users;
     },
-    getAuth(state) {
-        return state.auth;
+    getStudents(state) {
+        return state.students;
     }
 }
 
@@ -20,8 +20,8 @@ const mutations = {
     setUsers(state, payload) {
         state.users = payload;
     },
-    setAuth(state, payload) {
-        state.auth = payload;
+    setStudents(state, payload) {
+        state.students = payload;
     }
 }
 

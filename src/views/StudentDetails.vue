@@ -17,7 +17,7 @@
       </v-col>
       <v-col cols="12" >
         <h2>Student Details</h2>
-        <p>Lastname: {{  }}</p>
+        <p>Lastname: {{ this.users.Lastname }}</p>
         <p>Firstname:</p>
         <p>Middlename:</p>
         <p>Barangay:</p>
