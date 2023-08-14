@@ -52,7 +52,6 @@ const actions = {
         commit('setUsers', res.data.users);
         commit('setStarted', res.data.exam_started[0].count);
         commit('setFinish', res.data.exam_finish[0].count);
-
     },
     async fetchStudent({ commit }, payload) {
         try {
