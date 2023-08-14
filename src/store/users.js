@@ -7,7 +7,8 @@ const state = () => ({
     student: [],
     started: [],
     finish: [],
-    answer:[]
+    answer:[],
+    stop: [],
 })
 
 const getters = {
@@ -30,7 +31,10 @@ const getters = {
     },
     getAnswer(state){
         return state.answer;
-    }
+    },
+    getStop(state){
+        return state.stop;
+    },
 }
 
 const mutations = {
@@ -48,6 +52,9 @@ const mutations = {
     },
     setAnswer(state,payload){
         state.answer=payload;
+    },
+    setStop(state,payload){
+        state.stop=payload;
     }
 }
 
@@ -64,15 +71,25 @@ const actions = {
         try {
             let res = await axios.post(`http://10.0.1.23/PEESOCESPRO/userinfo.php`, payload);
             console.log("data from db=", res.data.user)
+            console.log("answer from db=", res.data.answer)
             commit('setStudents', res.data.user[0]);
             commit('setAnswer',res.data.answer[0]);
         }
         catch (error) {
             console.error('Error fetching students:', error);
         }
-
     },
-
+    async fetchStop() {
+        try {
+            let res = await axios.post(`http://10.0.1.23/PEESOCESPRO/stopall.php`);
+            console.log("data from db=", res.data.stop)
+        
+        }
+        catch (error) {
+            console.error('Error Stopping exam:', error);
+        }
+    },
+  
 }
 
 export default {

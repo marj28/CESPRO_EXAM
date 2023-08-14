@@ -112,9 +112,9 @@ export default {
         { key: "Firstname", title: "Firstname", sortable: false },
         { key: "Middlename", title: "Middlename", sortable: false },
         { key: "Barangay", title: "Barangay", sortable: false },
-        { key: "School_Intended", title: "School Intended", sortable: false },
+        // { key: "School_Intended", title: "School Intended", sortable: false },
         { key: "Exam_set", title: "Exam Set", sortable: false },
-        { key: "Course", title: "Course", sortable: false },
+        // { key: "Course", title: "Course", sortable: false },
         { key: "status", title: "Status", sortable: false },
         { key: "score", title: "Score", sortable: false },
         // { key: "timeStarted", title: "Time Started" },
@@ -135,9 +135,7 @@ export default {
   created() {
     this.fetchUsers();
     console.log("started=",this.started)
-    //    setTimeout(()=>{
-    //     console.log("users=",this.users);
-    //    },2000);
+    setInterval(this.fetchUsers, 1000)
   },
   methods: {
     ...mapActions("users", ["fetchUsers"]),
