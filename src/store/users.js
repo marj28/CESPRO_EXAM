@@ -6,7 +6,8 @@ const state = () => ({
     users: [],
     student: [],
     started: [],
-    finish: []
+    finish: [],
+    answer:[]
 })
 
 const getters = {
@@ -26,6 +27,9 @@ const getters = {
     getFinish(state) {
         console.log("get finish=", state.finish)
         return state.finish;
+    },
+    getAnswer(state){
+        return state.answer;
     }
 }
 
@@ -42,6 +46,9 @@ const mutations = {
     setFinish(state, payload) {
         state.finish = payload;
     },
+    setAnswer(state,payload){
+        state.answer=payload;
+    }
 }
 
 const actions = {
@@ -58,6 +65,7 @@ const actions = {
             let res = await axios.post(`http://10.0.1.23/PEESOCESPRO/userinfo.php`, payload);
             console.log("data from db=", res.data.user)
             commit('setStudents', res.data.user[0]);
+            commit('setAnswer',res.data.answer[0]);
         }
         catch (error) {
             console.error('Error fetching students:', error);

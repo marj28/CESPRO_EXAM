@@ -34,7 +34,8 @@
         </template> -->
       </v-col>
       <v-col>
-        <v-card class="pa-3"> Diria ang Answer Sheet </v-card>
+        <v-card class="pa-3" v-for="answer in Answers"> Diria ang Answer Sheet </v-card>
+
       </v-col>
     </v-row>
   </v-container>
@@ -61,7 +62,7 @@ export default {
     search: "",
   }),
   computed: {
-    ...mapGetters('users', {Student: ['getStudents']} ),
+    ...mapGetters('users', {Student: ['getStudents'], Answers: ['getAnswer']} ),
     // refresh(){
     //   let data = new FormData;
     // console.log("examineeId=",this.$route.params.id);
